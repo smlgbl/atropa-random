@@ -19,7 +19,8 @@
         "buildBrowserModule": "node dev/browserify.js",
         "buildDocs": "jsdoc-toolkit -v -d=./docs/jsdoc/ -r -s src/",
         "lint": "atropa-jslint ./src/atropa-random.js",
-        "srcFormat": "atropa-jsformatter ./src/atropa-random.js ./src/atropa-random.js"
+        "srcFormat": "atropa-jsformatter ./src/atropa-random.js ./src/atropa-random.js",
+        "pretest": "node dev/browserify.js"
     },
     "homepage": "https://github.com/matthewkastor/atropa-random/",
     "bugs": "https://github.com/matthewkastor/atropa-random/issues",
