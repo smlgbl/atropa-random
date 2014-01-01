@@ -1,6 +1,6 @@
 {
   "name": "atropa-random",
-  "version": "2013.10.15",
+  "version": "2013.10.16",
   "description": "JavaScript module that provides random strings and numbers.",
   "main": "./src/atropa-random.js",
   "directories": {
