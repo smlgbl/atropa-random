@@ -1,14 +1,14 @@
 /// <reference path="../docs/vsdoc/OpenLayersAll.js"/>
 var atropa = require('atropa-header');
 /*jslint
-    indent: 4,
-    maxerr: 50,
-    white: true,
-    browser: true,
-    devel: true,
-    plusplus: true,
-    regexp: true
-*/
+ indent: 4,
+ maxerr: 50,
+ white: true,
+ browser: true,
+ devel: true,
+ plusplus: true,
+ regexp: true
+ */
 /*global atropa */
 // end header
 
@@ -29,7 +29,7 @@ atropa.random = {};
  * @version 20120909
  * @param {Number} stringLength This is the length of the string.
  * @param {String} characterClass Optional. May be one of:
- *  numeric, caps, lower, alpha, alphanumeric, punctuation, vowel, consonant
+ *  numeric, caps, lower, alpha, alphanumeric, alphanumericspecial, punctuation, vowel, consonant
  *  This is the type of characters you want returned to you. Defaults to
  *  alphanumeric.
  * @return {String} A random string of specified length and composition.
@@ -37,56 +37,63 @@ atropa.random = {};
 atropa.random.string = function randomString(stringLength, characterClass) {
     'use strict';
     var numeric,
-    vowel,
-    consonant,
-    lower,
-    caps,
-    alpha,
-    alphanumeric,
-    punctuation,
-    chars,
-    string_length,
-    randomstring,
-    i,
-    character;
-    
+        vowel,
+        consonant,
+        lower,
+        caps,
+        alpha,
+        alphanumeric,
+        alphanumericspecial,
+        punctuation,
+        special,
+        chars,
+        string_length,
+        randomstring,
+        i,
+        character;
+
     numeric = '0123456789';
     vowel = 'aeiouy';
     consonant = 'bcdfghjklmnpqrstvwxz';
+    special = 'äüöèéá~âêß$§&*+«„><|’˘µ¢@';
     lower = vowel + consonant;
     caps = lower.toUpperCase();
     alpha = caps + lower;
     alphanumeric = numeric + caps + lower;
+    alphanumericspecial = alphanumeric + special;
     punctuation = '.?!';
     randomstring = '';
     switch (characterClass) {
-    case 'numeric':
-        chars = numeric;
-        break;
-    case 'caps':
-        chars = caps;
-        break;
-    case 'lower':
-        chars = lower;
-        break;
-    case 'alpha':
-        chars = alpha;
-        break;
-    case 'alphanumeric':
-        chars = alphanumeric;
-        break;
-    case 'punctuation':
-        chars = punctuation;
-        break;
-    case 'vowel':
-        chars = vowel;
-        break;
-    case 'consonant':
-        chars = consonant;
-        break;
-    default:
-        chars = alphanumeric;
-        break;
+        case 'numeric':
+            chars = numeric;
+            break;
+        case 'caps':
+            chars = caps;
+            break;
+        case 'lower':
+            chars = lower;
+            break;
+        case 'alpha':
+            chars = alpha;
+            break;
+        case 'alphanumeric':
+            chars = alphanumeric;
+            break;
+        case 'alphanumericspecial':
+            chars = alphanumericspecial;
+            break;
+        case 'punctuation':
+            chars = punctuation;
+            break;
+        case 'vowel':
+            chars = vowel;
+            break;
+        case 'consonant':
+            chars = consonant;
+            break;
+        default:
+            chars = alphanumeric;
+            break;
     }
     if (stringLength === undefined) {
         string_length = 4;
@@ -172,7 +179,7 @@ atropa.random.getArrayValue = function (arr) {
 atropa.random.pullArrayElement = function (arr) {
     "use strict";
     var k,
-    d;
+        d;
     k = atropa.random.getArrayKey(arr);
     d = arr[k];
     arr.splice(k, 1);
@@ -191,7 +198,7 @@ atropa.random.pullArrayElement = function (arr) {
 atropa.random.pullProperty = function (obj) {
     "use strict";
     var pName,
-    objData;
+        objData;
     pName = atropa.random.getPropertyName(obj);
     objData = obj[pName];
     delete obj[pName];
@@ -199,9 +206,7 @@ atropa.random.pullProperty = function (obj) {
 };
 
 
-
-
-while(atropa.data.requirements.length > 0) {
+while (atropa.data.requirements.length > 0) {
     atropa.data.requirements.pop()();
 }
 module.exports = atropa;
